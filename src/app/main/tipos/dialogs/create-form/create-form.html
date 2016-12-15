@@ -1,0 +1,76 @@
+<md-dialog class="event-form-dialog" aria-label="New Message">
+	<form name="autoForm" class="md-inline-form" novalidate>
+		<md-toolbar class="md-accent md-hue-2">
+			<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
+				<span class="title">Añadir Marca</span>
+				<md-button class="md-icon-button" ng-click="vm.close()" aria-label="Close dialog" translate translate-attr-aria-label="CALENDAR.CLOSE_DIALOG">
+					<md-icon md-font-icon="icon-close"></md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content ms-scroll>
+			<h1>{{vm.auto.id}}</h1>
+
+      <md-input-container class="md-block">
+        <label>Nombre</label>
+        <input required md-no-asterisk name="name" ng-model="vm.marca.nombre">
+        <div ng-messages="autoForm.name.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
+
+			<!-- <div layout="row" class="date-row">
+				<md-datepicker ng-model="vm.date" md-placeholder="Fecha de Inicio" flex="50" md-min-date="vm.today" name="datePickerStart" required></md-datepicker>
+
+				<md-input-container class="no-errors-spacer" flex="30" md-no-float>
+					<label>Hora</label>
+					<md-select ng-model="vm.time" ng-disabled="!vm.date" required>
+						<md-option ng-repeat="hour in vm.hours" value="{{ hour }}">
+							{{ vm.moment(hour, 'HH:mm:ss').format('hh:ss a') }}
+						</md-option>
+					</md-select>
+				</md-input-container>
+
+			</div>
+
+			<!-- <div layout="row" class="date-row">
+				<md-input-container class="no-errors-spacer" flex="100" >
+					<label>Dealer</label>
+					<md-select ng-model="vm.dealerId" required>
+						<md-option ng-repeat="dealer in vm.dealers" ng-value="{{ dealer.id }}">
+							{{ dealer.name }}
+						</md-option>
+					</md-select>
+				</md-input-container>
+			</div> -->
+
+			<!-- <div layout class="date-row">
+		    <div flex="30" layout layout-align="center center">
+		      <span class="md-body-1">Capacidad</span>
+		    </div>
+		    <md-slider
+					name="cantidad"
+					required
+					flex
+					class="md-primary"
+					md-discrete
+					ng-model="vm.pit"
+					step="1"
+					min="1"
+					max="7"
+					aria-label="cantidad">
+		    </md-slider>
+			</div> -->
+
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row" layout-align="space-between center">
+			<md-button ng-click="vm.save()" class="save-button md-accent md-raised" aria-label="SAVE"
+      ng-disabled="autoForm.$invalid">
+				Guardar
+			</md-button>
+
+		</md-dialog-actions>
+	</form>
+</md-dialog>

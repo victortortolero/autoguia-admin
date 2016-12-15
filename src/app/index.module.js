@@ -1,26 +1,29 @@
-(function ()
-{
-    'use strict';
+(function() {
+  'use strict';
 
-    /**
+  /**
      * Main module of the Fuse
      */
-    angular
-        .module('fuse', [
+  angular.module('fuse', [
 
-            // Core
-            'app.core',
+    // Core
+    'app.core',
 
-            // Navigation
-            'app.navigation',
+    // Navigation
+    'app.navigation',
 
-            // Toolbar
-            'app.toolbar',
+    // Toolbar
+    'app.toolbar',
 
-            // Quick Panel
-            'app.quick-panel',
+    // Quick Panel
+    'app.quick-panel',
 
-            // Sample
-            'app.sample'
-        ]);
+    // Sample
+    // 'app.sample',
+
+    'app.pages.auth.login',
+    'app.autos',
+    'app.marcas',
+    'app.tipos'
+  ]);
 })();

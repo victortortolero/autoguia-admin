@@ -1,15 +1,11 @@
-(function ()
-{
-    'use strict';
+(function() {
+  'use strict';
 
-    angular
-        .module('fuse')
-        .factory('api', apiService);
+  angular.module('fuse').factory('api', apiService);
 
-    /** @ngInject */
-    function apiService($resource)
-    {
-        /**
+  /** @ngInject */
+  function apiService($resource, $http, $httpParamSerializerJQLike) {
+    /**
          * You can use this service to define your API urls. The "api" service
          * is designed to work in parallel with "apiResolver" service which you can
          * find in the "app/core/services/api-resolver.service.js" file.
@@ -175,14 +171,64 @@
          *      }
          */
 
-        var api = {};
+    var api = {};
 
-        // Base Url
-        api.baseUrl = 'app/data/';
+    // Base Url
+    api.baseDataUrl = 'app/data/';
+    api.baseUrl = 'http://jrojas.dhdinc.info/autoguia-api/public/index.php';
 
-        // api.sample = $resource(api.baseUrl + 'sample/sample.json');
+    // config
+    api.headerConfig = {
+      json: {
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      },
+      form: {
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded'
+        }
+      },
+      file: {
+        headers: {
+          'Content-Type': undefined
+        }
+      }
+    };
 
-        return api;
-    }
+    api.mockup = {
+      getAutos: function() {
+        return $http.get(api.baseDataUrl + 'mockups/autos.json');
+      },
+      getMarcas: function() {
+        return $http.get(api.baseDataUrl + 'mockups/marcas.json');
+      },
+      getTipos: function() {
+        return $http.get(api.baseDataUrl + 'mockups/tipos.json');
+      }
+    };
+
+    api.marcas = {
+      get: function() {
+        return $http.get(api.baseUrl + '/marcas');
+      },
+      create: function(marca) {
+        return $http.post(api.baseUrl + '/marcas', marca);
+      },
+      update: function(marca) {
+        return $http.put(api.baseUrl + '/marcas/' + marca.id_marca, marca);
+      },
+      destroy: function(marca) {
+        return $http.delete(api.baseUrl + '/marcas/' + marca.id_marca);
+      },
+      updateImage: function(formData) {
+        return $http.post(api.baseUrl + '/marcas/image/marca', formData, api.headerConfig.file);
+      }
+    };
+
+    // api.sample = $resource(api.baseUrl + 'sample/sample.json');
+
+    return api;
+  }
 
 })();
