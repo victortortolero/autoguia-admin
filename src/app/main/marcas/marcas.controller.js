@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function MarcasController(
-    $state, api, $document, $mdDialog, $mdToast, moment, $timeout, $scope
+    $state, api, $document, $mdDialog, $mdToast, moment, $timeout, $scope, utils
   ) {
     var vm = this;
 
@@ -15,6 +15,8 @@
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
+
+    vm.removeObjectFromArray = utils.removeObjectFromArray;
 
     vm.dtOptions = {
 			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
@@ -49,6 +51,7 @@
 		  }).then(function(answer) {
         return api.marcas.update(answer);
       }).then(function(response) {
+        if (marca.file.length < 1) return false;
         console.log(marca);
         var formData = new FormData();
         formData.append('id_marca', marca.id_marca);
@@ -65,7 +68,7 @@
 					$state.reload();
 				}, 4000);
 			}).catch(function(err) {
-        console.log("error");
+        if (err === "closed-manually") return;
         $mdToast.show(
 					$mdToast.simple()
 		        .textContent("Error al actualizar marca!")
@@ -92,10 +95,9 @@
             .toastClass("toast-successfully")
             .hideDelay(3000)
         );
-        $timeout(function() {
-        	$state.reload();
-        }, 4000);
+        $timeout($state.reload, 4000);
       }).catch(function (err) {
+        if (err === "closed-manually") return;
         console.log(err);
         $mdToast.show(
           $mdToast.simple()
@@ -107,45 +109,26 @@
 		}
 
     function destroy(marca) {
-      swal({
+      swal(utils.swalDeleteObject({
         title: 'Seguro que quieres eliminar esta marca?',
-        // text: "You won't be able to revert this!",
-        type: 'warning',
-        showCancelButton: true,
-        confirmButtonColor: '#3085d6',
-        cancelButtonColor: '#d33',
-        confirmButtonText: 'Si!',
-        cancelButtonText: 'Cancelar',
-        showLoaderOnConfirm: true,
         preConfirm: function() {
           return api.marcas.destroy(marca);
-        },
-      }).then(function(res) {
+        }
+      })).then(function(res) {
+        vm.removeObjectFromArray(vm.marcas, marca, 'id_marca');
+        $scope.$apply();
         swal({
           type: 'success',
           title: 'Se elimino la marca exitosamente!',
         });
-        removeObjectFromArray(vm.marcas, marca, 'id_marca');
-        $scope.$apply();
       }).catch(function(err) {
+        if (err === "cancel") return;
         swal({
           type: 'warning',
           title: 'Error al intentar eliminar la marca!',
           text: 'Intente de nuevo mas tarde.'
         });
-        console.log("error deleting marca");
-        console.log(err);
       });
-    }
-
-    function removeObjectFromArray(array, obj, key) {
-      for (var i = 0; i < array.length; i++) {
-        var currentObj = array[i];
-        if (currentObj[key] === obj[key]) {
-          array.splice(i, 1)[0];
-          return array;
-        }
-      }
     }
   }
 })();
