@@ -256,6 +256,21 @@
       }
     };
 
+    api.versiones = {
+      get: function() {
+        return $http.get(api.baseUrl + '/versionesAuto');
+      },
+      create: function(version) {
+        return $http.post(api.baseUrl + '/versionesAuto', version);
+      },
+      update: function(version) {
+        return $http.put(api.baseUrl + '/versionesAuto/' + version.id_version, version);
+      },
+      destroy: function(version) {
+        return $http.delete(api.baseUrl + '/versionesAuto/' + version.id_version);
+      }
+    };
+
     // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
     return api;

@@ -68,7 +68,7 @@
 					$state.reload();
 				}, 4000);
 			}).catch(function(err) {
-        if (err === "closed-manually") return;
+        if (err === "closed-manually" || typeof(err) === 'undefined') return;
         $mdToast.show(
 					$mdToast.simple()
 		        .textContent("Error al actualizar marca!")
@@ -97,7 +97,7 @@
         );
         $timeout($state.reload, 4000);
       }).catch(function (err) {
-        if (err === "closed-manually") return;
+        if (err === "closed-manually" || typeof(err) === 'undefined') return;
         console.log(err);
         $mdToast.show(
           $mdToast.simple()

@@ -31,7 +31,7 @@
     // });
     //
     msNavigationServiceProvider.saveItem('autos.tipos', {
-        title : 'Tipos de Auto',
+        title : 'Tipos',
         state : 'app.tipos',
         weight: 1
     });

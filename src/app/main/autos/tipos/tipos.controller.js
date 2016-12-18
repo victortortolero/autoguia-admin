@@ -53,7 +53,7 @@
         utils.successToast('Tipo de Auto actualizado exitosamente!');
 				$timeout($state.reload(), 4000);
 			}).catch(function(err) {
-        if (err === "closed-manually") return;
+        if (err === "closed-manually" || typeof(err) === 'undefined') return;
         utils.errorToast('Error al actualizar tipo de auto!');
       });
 		}
@@ -75,7 +75,7 @@
         utils.successToast('Tipo de Auto creado exitosamente!');
 				$timeout($state.reload(), 4000);
 			}).catch(function(err) {
-        if (err === "closed-manually") return;
+        if (err === "closed-manually" || typeof(err) === 'undefined') return;
         utils.errorToast('Error al crear tipo de auto!');
       });
 		}

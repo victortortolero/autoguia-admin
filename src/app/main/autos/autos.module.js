@@ -7,6 +7,7 @@
       'app.autos.marcas',
       'app.autos.tipos',
       'app.autos.subtipos',
+      'app.autos.versiones'
     ])
     .config(config);
 

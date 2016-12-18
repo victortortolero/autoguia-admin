@@ -8,10 +8,10 @@
         <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
         <span class="parent">Autos</span>
         <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
-        <span class="parent">Tipos</span>
+        <span class="parent">Versiones</span>
       </div>
 
-      <div class="title">Tipos</div>
+      <div class="title">Versiones</div>
     </div>
   </div>
   <!-- / HEADER -->
@@ -32,7 +32,7 @@
 
     <!-- <div layout="row" layout-align="start center"> -->
       <md-button class="md-accent add-car-button md-raised" ng-click="vm.showCreateForm()">
-        Agregar Tipo<md-icon md-font-icon="icon-plus"></md-icon>
+        Agregar Version<md-icon md-font-icon="icon-plus"></md-icon>
       </md-button>
     <!-- </div> -->
 
@@ -62,19 +62,31 @@
             </th>
             <th class="secondary-text">
               <div class="table-header">
+                <span class="column-title">Abreviatura</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">id Modelo Tipo</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
                 <span class="column-title">Acciones</span>
               </div>
             </th>
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="tipo in vm.tipos">
-            <td>{{tipo.id_tipo}}</td>
-            <td>{{tipo.nombre}}</td>
-            <td>{{tipo.descripcion}}</td>
+          <tr ng-repeat="version in vm.versiones">
+            <td>{{version.id_version}}</td>
+            <td>{{version.nombre}}</td>
+            <td>{{version.descripcion}}</td>
+            <td>{{version.abreviatura}}</td>
+            <td>{{version.id_modelo_tipo}}</td>
             <td layout="row">
-              <md-button class="md-raised" ng-click="vm.showEditForm(tipo, $event)">Modificar</md-button>
-              <md-button class="md-raised" ng-click="vm.destroy(tipo)">Eliminar</md-button>
+              <md-button class="md-raised" ng-click="vm.showEditForm(version, $event)">Modificar</md-button>
+              <md-button class="md-raised" ng-click="vm.destroy(version)">Eliminar</md-button>
             </td>
           </tr>
         </tbody>

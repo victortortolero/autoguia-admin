@@ -31,7 +31,7 @@
     // });
     //
     msNavigationServiceProvider.saveItem('autos.subtipos', {
-        title : 'SubTipos de Auto',
+        title : 'SubTipos',
         state : 'app.subtipos',
         weight: 1
     });
