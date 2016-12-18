@@ -20,7 +20,7 @@
       return angular.extend({}, utils.swalBaseDeleteConfirm, obj);
     };
 
-    utils.toast = function(message, klass, delay) {
+    function toast(message, klass, delay) {
       return $mdToast.show(
         $mdToast.simple()
           .textContent(message)
@@ -30,11 +30,11 @@
     };
 
     utils.successToast = function(message) {
-      return utils.toast(message, 'toast-successfully');
+      return toast(message, 'toast-successfully');
     };
 
     utils.errorToast = function(message) {
-      return utils.toast(message, 'toast-error');
+      return toast(message, 'toast-error');
     };
 
     utils.swalBaseDeleteConfirm = {

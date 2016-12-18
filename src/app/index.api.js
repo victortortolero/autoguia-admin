@@ -241,6 +241,21 @@
       }
     };
 
+    api.subtipos = {
+      get: function() {
+        return $http.get(api.baseUrl + '/subtiposAuto');
+      },
+      create: function(subtipo) {
+        return $http.post(api.baseUrl + '/subtiposAuto', subtipo);
+      },
+      update: function(subtipo) {
+        return $http.put(api.baseUrl + '/subtiposAuto/' + subtipo.id_subtipo, subtipo);
+      },
+      destroy: function(subtipo) {
+        return $http.delete(api.baseUrl + '/subtiposAuto/' + subtipo.id_subtipo);
+      }
+    };
+
     // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
     return api;
