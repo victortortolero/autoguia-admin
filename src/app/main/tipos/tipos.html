@@ -6,10 +6,10 @@
       <div class="breadcrumb" layout="row" layout-align="start center">
         <md-icon md-font-icon="icon-home" class="s16"></md-icon>
         <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
-        <span class="parent">Tipos</span>
+        <span class="parent">Tipos de Auto</span>
       </div>
 
-      <div class="title">Tipos</div>
+      <div class="title">Tipos de Auto</div>
     </div>
   </div>
   <!-- / HEADER -->
@@ -30,7 +30,7 @@
 
     <!-- <div layout="row" layout-align="start center"> -->
       <md-button class="md-accent add-car-button md-raised" ng-click="vm.showCreateForm()">
-        Agregar Marca<md-icon md-font-icon="icon-plus"></md-icon>
+        Agregar Tipo<md-icon md-font-icon="icon-plus"></md-icon>
       </md-button>
     <!-- </div> -->
 
@@ -55,6 +55,11 @@
             </th>
             <th class="secondary-text">
               <div class="table-header">
+                <span class="column-title">Descripcion</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
                 <span class="column-title">Acciones</span>
               </div>
             </th>
@@ -62,11 +67,12 @@
         </thead>
         <tbody>
           <tr ng-repeat="tipo in vm.tipos">
-            <td>{{tipo.id}}</td>
+            <td>{{tipo.id_tipo}}</td>
             <td>{{tipo.nombre}}</td>
+            <td>{{tipo.descripcion}}</td>
             <td layout="row">
               <md-button class="md-raised" ng-click="vm.showEditForm(tipo, $event)">Modificar</md-button>
-              <md-button class="md-raised" >Eliminar</md-button>
+              <md-button class="md-raised" ng-click="vm.destroy(tipo)">Eliminar</md-button>
             </td>
           </tr>
         </tbody>

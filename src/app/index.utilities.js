@@ -4,7 +4,7 @@
   angular.module('fuse').factory('utils', apiService);
 
   /** @ngInject */
-  function apiService($http) {
+  function apiService($mdToast) {
     var utils = {};
 
     utils.removeObjectFromArray = function(array, obj, prop) {
@@ -18,6 +18,23 @@
 
     utils.swalDeleteObject = function(obj) {
       return angular.extend({}, utils.swalBaseDeleteConfirm, obj);
+    };
+
+    utils.toast = function(message, klass, delay) {
+      return $mdToast.show(
+        $mdToast.simple()
+          .textContent(message)
+          .toastClass(klass)
+          .hideDelay(delay || 3000)
+      );
+    };
+
+    utils.successToast = function(message) {
+      return utils.toast(message, 'toast-successfully');
+    };
+
+    utils.errorToast = function(message) {
+      return utils.toast(message, 'toast-error');
     };
 
     utils.swalBaseDeleteConfirm = {

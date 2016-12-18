@@ -6,12 +6,16 @@
     .controller('TiposController', TiposController);
 
   /** @ngInject */
-  function TiposController($state, api, $document, $mdDialog, $mdToast, moment) {
+  function TiposController(
+    $state, api, $document, $mdDialog, $mdToast,
+    moment, utils, $timeout, $scope
+  ) {
     var vm = this;
 
     vm.tipos = [];
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
+    vm.destroy = destroy;
 
     vm.dtOptions = {
 			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
@@ -23,13 +27,12 @@
     activate();
 
     function activate() {
-      api.mockup.getTipos()
+      api.tipos.get()
         .then(function(res) {
-          return res.data;
-        })
-        .then(function(data) {
-          console.log(data);
+          var data = res.data;
           vm.tipos = data;
+        }, function(error) {
+          console.log(error);
         });
     }
 
@@ -44,29 +47,15 @@
 		    locals: {
 		      tipo: tipo
 		    }
-		  }).then(function(answer) {
-				// Envio los datos al servidor.
-        console.log(answer);
-				// ScheduleAdminService.saveDate(answer)
-				// 	.then(function(response) {
-				// 		$mdToast.show(
-				// 				$mdToast.simple()
-  			// 					.textContent(response.message)
-  			// 					.toastClass("toast-successfully")
-  			// 					.hideDelay(3000)
-				// 		);
-				// 		$timeout(function() {
-				// 			$state.reload();
-				// 		}, 4000);
-				// 	}, function (reason) {
-				// 		$mdToast.show(
-				// 				$mdToast.simple()
-  			// 					.textContent(response.message)
-  			// 					.toastClass("toast-error")
-  			// 					.hideDelay(3000)
-				// 		);
-				// 	});
-		  });
+		  }).then(function(data) {
+        return api.tipos.update(data);
+      }).then(function() {
+        utils.successToast('Tipo de Auto actualizado exitosamente!');
+				$timeout($state.reload(), 4000);
+			}).catch(function(err) {
+        if (err === "closed-manually") return;
+        utils.errorToast('Error al actualizar tipo de auto!');
+      });
 		}
 
     function showCreateForm(e) {
@@ -77,30 +66,42 @@
 		    parent: angular.element($document.body),
 		    targetEvent: e,
 		    clickOutsideToClose: true,
-		  }).then(function(answer) {
-				// Envio los datos al servidor.
-        console.log(answer);
-				// ScheduleAdminService.saveDate(answer)
-				// 	.then(function(response) {
-				// 		$mdToast.show(
-				// 				$mdToast.simple()
-  			// 					.textContent(response.message)
-  			// 					.toastClass("toast-successfully")
-  			// 					.hideDelay(3000)
-				// 		);
-				// 		$timeout(function() {
-				// 			$state.reload();
-				// 		}, 4000);
-				// 	}, function (reason) {
-				// 		$mdToast.show(
-				// 				$mdToast.simple()
-  			// 					.textContent(response.message)
-  			// 					.toastClass("toast-error")
-  			// 					.hideDelay(3000)
-				// 		);
-				// 	});
-		  });
+		  }).then(function(newTipo) {
+        console.log(newTipo);
+        return api.tipos.create(newTipo);
+      }).then(function(res) {
+        console.log("Creado");
+        console.log(res);
+        utils.successToast('Tipo de Auto creado exitosamente!');
+				$timeout($state.reload(), 4000);
+			}).catch(function(err) {
+        if (err === "closed-manually") return;
+        utils.errorToast('Error al crear tipo de auto!');
+      });
 		}
+
+    function destroy(tipo) {
+      swal(utils.swalDeleteObject({
+        title: 'Seguro que quieres eliminar este tipo de auto?',
+        preConfirm: function() {
+          return api.tipos.destroy(tipo);
+        }
+      })).then(function(res) {
+        utils.removeObjectFromArray(vm.tipos, tipo, 'id_tipo');
+        $scope.$apply();
+        swal({
+          type: 'success',
+          title: 'Se elimino el tipo de auto exitosamente!',
+        });
+      }).catch(function(err) {
+        if (err === "cancel") return;
+        swal({
+          type: 'warning',
+          title: 'Error al intentar eliminar el tipo de auto!',
+          text: 'Intente de nuevo mas tarde.'
+        });
+      });
+    }
 
   }
 })();

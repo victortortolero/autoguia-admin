@@ -19,7 +19,7 @@
     }
 
     function close() {
-      $mdDialog.cancel();
+      $mdDialog.cancel('closed-manually');
     }
   }
 

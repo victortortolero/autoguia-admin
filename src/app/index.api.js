@@ -226,6 +226,21 @@
       }
     };
 
+    api.tipos = {
+      get: function() {
+        return $http.get(api.baseUrl + '/tiposAuto');
+      },
+      create: function(tipo) {
+        return $http.post(api.baseUrl + '/tiposAuto', tipo);
+      },
+      update: function(tipo) {
+        return $http.put(api.baseUrl + '/tiposAuto/' + tipo.id_tipo, tipo);
+      },
+      destroy: function(tipo) {
+        return $http.delete(api.baseUrl + '/tiposAuto/' + tipo.id_tipo);
+      }
+    };
+
     // api.sample = $resource(api.baseUrl + 'sample/sample.json');
 
     return api;
