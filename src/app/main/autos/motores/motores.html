@@ -8,10 +8,10 @@
         <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
         <span class="parent">Autos</span>
         <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
-        <span class="parent">Versiones</span>
+        <span class="parent">Motores</span>
       </div>
 
-      <div class="title">Versiones</div>
+      <div class="title">Motores</div>
     </div>
   </div>
   <!-- / HEADER -->
@@ -32,7 +32,7 @@
 
     <!-- <div layout="row" layout-align="start center"> -->
       <md-button class="md-accent add-car-button md-raised" ng-click="vm.showCreateForm()">
-        Agregar Version<md-icon md-font-icon="icon-plus"></md-icon>
+        Agregar Motor<md-icon md-font-icon="icon-plus"></md-icon>
       </md-button>
     <!-- </div> -->
 
@@ -52,24 +52,24 @@
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Nombre</span>
-              </div>
-            </th>
-            <th class="secondary-text">
-              <div class="table-header">
                 <span class="column-title">Descripcion</span>
               </div>
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Abreviatura</span>
+                <span class="column-title">Modelo</span>
               </div>
             </th>
-            <!-- <th class="secondary-text">
+            <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">id Modelo Tipo</span>
+                <span class="column-title">Tipo</span>
               </div>
-            </th> -->
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Marca</span>
+              </div>
+            </th>
             <th class="secondary-text">
               <div class="table-header">
                 <span class="column-title">Acciones</span>
@@ -78,15 +78,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="version in vm.versiones">
-            <td>{{version.id_version}}</td>
-            <td>{{version.nombre}}</td>
-            <td>{{version.descripcion}}</td>
-            <td>{{version.abreviatura}}</td>
-            <!-- <td>{{version.id_modelo_tipo}}</td> -->
+          <tr ng-repeat="motor in vm.motores">
+            <td>{{motor.id_motor}}</td>
+            <td>{{motor.descripcion}}</td>
+            <td>{{motor.modelo}}</td>
+            <td>{{motor.tipo}}</td>
+            <td>{{motor.marca}}</td>
             <td layout="row">
-              <md-button class="md-raised" ng-click="vm.showEditForm(version, $event)">Modificar</md-button>
-              <md-button class="md-raised" ng-click="vm.destroy(version)">Eliminar</md-button>
+              <md-button class="md-raised" ng-click="vm.showEditForm(motor, $event)">Modificar</md-button>
+              <md-button class="md-raised" ng-click="vm.destroy(motor)">Eliminar</md-button>
             </td>
           </tr>
         </tbody>

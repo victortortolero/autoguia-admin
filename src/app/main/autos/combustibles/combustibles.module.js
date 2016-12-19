@@ -2,7 +2,7 @@
   'use strict';
 
   angular
-    .module('app.autos.subtipos', [
+    .module('app.autos.combustibles', [
       'datatables', 'flow', 'angularMoment', 'ngMaterial', 'lfNgMdFileInput'
     ])
     .config(config);
@@ -10,19 +10,19 @@
   /** @ngInject */
   function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider) {
     // State
-    $stateProvider.state('app.subtipos', {
-      url: '/subtipos',
+    $stateProvider.state('app.combustibles', {
+      url: '/combustibles',
       views: {
         'content@app': {
-          templateUrl: 'app/main/autos/subtipos/subtipos.html',
-          controller: 'SubTiposController as vm'
+          templateUrl: 'app/main/autos/combustibles/combustibles.html',
+          controller: 'CombustiblesController as vm'
         }
       }
     });
 
-    msNavigationServiceProvider.saveItem('autos.subtipos', {
-        title : 'SubTipos',
-        state : 'app.subtipos',
+    msNavigationServiceProvider.saveItem('autos.combustibles', {
+        title : 'Combustibles',
+        state : 'app.combustibles',
         weight: 1
     });
   }

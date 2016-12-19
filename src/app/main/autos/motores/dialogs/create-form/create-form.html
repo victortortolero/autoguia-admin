@@ -2,7 +2,7 @@
 	<form name="form" class="md-inline-form" novalidate>
 		<md-toolbar class="md-accent md-hue-2">
 			<div class="md-toolbar-tools" layout="row" layout-align="space-between center">
-				<span class="title">Añadir Version</span>
+				<span class="title">Añadir Motor</span>
 				<md-button class="md-icon-button" ng-click="vm.close()" aria-label="Close dialog" translate translate-attr-aria-label="CALENDAR.CLOSE_DIALOG">
 					<md-icon md-font-icon="icon-close"></md-icon>
 				</md-button>
@@ -11,37 +11,37 @@
 
 		<md-dialog-content ms-scroll>
 
-      <md-input-container class="md-block">
-        <label>Nombre</label>
-        <input required md-no-asterisk name="nombre" ng-model="vm.version.nombre">
-        <div ng-messages="form.nombre.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
-      </md-input-container>
-
 			<md-input-container class="md-block">
         <label>Descripcion</label>
-        <input required md-no-asterisk name="descripcion" ng-model="vm.version.descripcion">
+        <input required md-no-asterisk name="descripcion" ng-model="vm.motor.descripcion">
         <div ng-messages="form.descripcion.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
 
-			<md-input-container class="md-block">
-        <label>Abreviatura</label>
-        <input required md-no-asterisk name="abreviatura" ng-model="vm.version.abreviatura">
-        <div ng-messages="form.abreviatura.$error">
+      <md-input-container class="md-block">
+        <label>Modelo</label>
+        <input required md-no-asterisk name="modelo" ng-model="vm.motor.modelo">
+        <div ng-messages="form.modelo.$error">
           <div ng-message="required">This is required.</div>
         </div>
       </md-input-container>
 
-			<!-- <md-input-container class="md-block">
-        <label>id Modelo Tipo</label>
-        <input required md-no-asterisk name="modelo" ng-model="vm.version.id_modelo_tipo">
-        <div ng-messages="form.modelo.$error">
+			<md-input-container class="md-block">
+        <label>Tipo</label>
+        <input required md-no-asterisk name="tipo" ng-model="vm.motor.tipo">
+        <div ng-messages="form.tipo.$error">
           <div ng-message="required">This is required.</div>
         </div>
-      </md-input-container> -->
+      </md-input-container>
+
+			<md-input-container class="md-block">
+        <label>Marca</label>
+        <input required md-no-asterisk name="marca" ng-model="vm.motor.marca">
+        <div ng-messages="form.marca.$error">
+          <div ng-message="required">This is required.</div>
+        </div>
+      </md-input-container>
 
 		</md-dialog-content>
 
