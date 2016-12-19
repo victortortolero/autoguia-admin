@@ -23,9 +23,7 @@
 
     'app.pages.auth.login',
     'app.autos',
-    // 'app.marcas',
-    // 'app.tipos',
-    // 'app.subtipos',
-    // 'app.pages'
+    'app.dealers',
+    
   ]);
 })();

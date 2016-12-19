@@ -43,6 +43,24 @@
       }
     };
 
+    api.autos = {
+      get: function() {
+        return $http.get(api.baseUrl + '/autos');
+      },
+      create: function(auto) {
+        return $http.post(api.baseUrl + '/auto', auto);
+      },
+      update: function(auto) {
+        return $http.put(api.baseUrl + '/auto/' + auto.id_auto, auto);
+      },
+      destroy: function(auto) {
+        return $http.delete(api.baseUrl + '/auto/' + auto.id_auto);
+      },
+      updateImage: function(formData) {
+        return $http.post(api.baseUrl + '/autos/image/auto', formData, api.headerConfig.file);
+      }
+    };
+
     api.marcas = {
       get: function() {
         return $http.get(api.baseUrl + '/marcas');

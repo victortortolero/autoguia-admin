@@ -6,12 +6,10 @@
       <div class="breadcrumb" layout="row" layout-align="start center">
         <md-icon md-font-icon="icon-home" class="s16"></md-icon>
         <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
-        <span class="parent">Autos</span>
-        <md-icon md-font-icon="icon-chevron-right" class="s16 separator"></md-icon>
-        <span class="parent">Autos</span>
+        <span class="parent">Dealers</span>
       </div>
 
-      <div class="title">Autos</div>
+      <div class="title">Dealers</div>
     </div>
   </div>
   <!-- / HEADER -->
@@ -32,7 +30,7 @@
 
     <!-- <div layout="row" layout-align="start center"> -->
       <md-button class="md-accent add-car-button md-raised" ng-click="vm.showCreateForm()">
-        Agregar Auto<md-icon md-font-icon="icon-plus"></md-icon>
+        Agregar Dealer<md-icon md-font-icon="icon-plus"></md-icon>
       </md-button>
     <!-- </div> -->
 
@@ -52,27 +50,22 @@
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Nombre</span>
+                <span class="column-title">Nombres</span>
               </div>
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Marca</span>
+                <span class="column-title">Apellidos</span>
               </div>
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Tipo</span>
+                <span class="column-title">Longitud</span>
               </div>
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Precio</span>
-              </div>
-            </th>
-            <th class="secondary-text">
-              <div class="table-header">
-                <span class="column-title">Año</span>
+                <span class="column-title">latitude</span>
               </div>
             </th>
             <th class="secondary-text">
@@ -83,16 +76,15 @@
           </tr>
         </thead>
         <tbody>
-          <tr ng-repeat="auto in vm.autos">
-            <td>{{auto.id_auto}}</td>
-            <td>{{auto.nombre_modelo}}</td>
-            <td>{{auto.nombre_marca}}</td>
-            <td>{{auto.nombre_tipo}}</td>
-            <td>{{auto.precio}}</td>
-            <td>{{auto.anio_lanzamiento_auto}}</td>
+          <tr ng-repeat="dealer in vm.dealers">
+            <td>{{dealer.id_dealer}}</td>
+            <td>{{dealer.nombres}}</td>
+            <td>{{dealer.apellidos}}</td>
+            <td>{{dealer.latitude}}</td>
+            <td>{{dealer.longitude}}</td>
             <td layout="row">
-              <md-button class="md-raised" ng-click="vm.showEditForm(auto, $event)">Modificar</md-button>
-              <md-button class="md-raised" >Eliminar</md-button>
+              <md-button class="md-raised" ng-click="vm.showEditForm(dealer, $event)">Modificar</md-button>
+              <md-button class="md-raised" ng-click="vm.destroy(dealer)">Eliminar</md-button>
             </td>
           </tr>
         </tbody>

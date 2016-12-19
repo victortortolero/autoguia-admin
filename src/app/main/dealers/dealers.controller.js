@@ -2,19 +2,20 @@
   'use strict';
 
   angular
-    .module('app.autos.autos')
-    .controller('AutosController', AutosController);
+    .module('app.dealers')
+    .controller('DealersController', DealersController);
 
   /** @ngInject */
-  function AutosController(
+  function DealersController(
     $state, api, $document, $mdDialog, $mdToast,
     moment, utils, $timeout, $scope
   ) {
     var vm = this;
 
-    vm.autos = [];
+    vm.dealers = [];
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
+    vm.destroy = destroy;
 
     vm.dtOptions = {
 			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
@@ -26,71 +27,74 @@
     activate();
 
     function activate() {
-      api.autos.get()
+      api.dealers.get()
         .then(function(res) {
-          vm.autos = res.data;
+          var data = res.data;
+          vm.dealers = data;
+        }, function(error) {
+          console.log(error);
         });
     }
 
-    function showEditForm(auto, e) {
+    function showEditForm(dealer, e) {
 		  $mdDialog.show({
-		    controller: 'EditFormAutosController',
+		    controller: 'EditFormDealersController',
 		    controllerAs: 'vm',
-		    templateUrl: 'app/main/autos/autos/dialogs/edit-form/edit-form.html',
+		    templateUrl: 'app/main/dealers/dialogs/edit-form/edit-form.html',
 		    parent: angular.element($document.body),
 		    targetEvent: e,
 		    clickOutsideToClose: true,
 		    locals: {
-		      auto: auto
+		      dealer: dealer
 		    }
 		  }).then(function(data) {
-        return api.autos.update(data);
+        return api.dealers.update(data);
       }).then(function() {
-        utils.successToast('Auto actualizado exitosamente!');
+        utils.successToast('Dealer actualizado exitosamente!');
 				$timeout($state.reload(), 4000);
 			}).catch(function(err) {
         if (err === "closed-manually" || typeof(err) === 'undefined') return;
-        utils.errorToast('Error al actualizar el Auto!');
+        utils.errorToast('Error al actualizar Dealer!');
       });
 		}
 
     function showCreateForm(e) {
 		  $mdDialog.show({
-		    controller: 'CreateFormAutosController',
+		    controller: 'CreateFormDealersController',
 		    controllerAs: 'vm',
-		    templateUrl: 'app/main/autos/autos/dialogs/create-form/create-form.html',
+		    templateUrl: 'app/main/dealers/dialogs/create-form/create-form.html',
 		    parent: angular.element($document.body),
 		    targetEvent: e,
 		    clickOutsideToClose: true,
-      }).then(function(auto) {
-        return api.autos.create(auto);
+		  }).then(function(dealer) {
+        return api.dealers.create(dealer);
       }).then(function(res) {
-        utils.successToast('Auto creado exitosamente!');
+        utils.successToast('Dealer creado exitosamente!');
 				$timeout($state.reload(), 4000);
 			}).catch(function(err) {
         if (err === "closed-manually" || typeof(err) === 'undefined') return;
-        utils.errorToast('Error al crear Auto!');
+        utils.errorToast('Error al crear Dealer!');
       });
 		}
 
-    function destroy(auto) {
+    function destroy(dealer) {
       swal(utils.swalDeleteObject({
-        title: 'Seguro que quieres eliminar este Auto?',
+        title: 'Seguro que quieres eliminar este Dealer?',
         preConfirm: function() {
-          return api.autos.destroy(auto);
+          return api.dealers.destroy(dealer);
         }
       })).then(function(res) {
-        utils.removeObjectFromArray(vm.autos, auto, 'id_auto');
+        utils.removeObjectFromArray(vm.dealers, dealer, 'id_dealer');
         $scope.$apply();
         swal({
           type: 'success',
-          title: 'Se elimino el Auto exitosamente!',
+          title: 'Se elimino el Dealer exitosamente!',
         });
       }).catch(function(err) {
         if (err === "cancel") return;
         swal({
           type: 'warning',
-          title: 'Error al intentar eliminar el Auto!',
+          title: 'Error al intentar eliminar el Dealer!',
           text: 'Intente de nuevo mas tarde.'
         });
       });
