@@ -7,12 +7,14 @@
 
   /** @ngInject */
   function AutosController(
-    $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    autos, $state, api, $document, $mdDialog, $mdToast,
+    moment, utils, $timeout, $scope,
+    marcas, tipos, subtipos, versiones, combustibles, motores
   ) {
+
     var vm = this;
 
-    vm.autos = [];
+    vm.autos = autos;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
 
@@ -23,15 +25,6 @@
 			responsive: true
 		};
 
-    activate();
-
-    function activate() {
-      api.autos.get()
-        .then(function(res) {
-          vm.autos = res.data;
-        });
-    }
-
     function showEditForm(auto, e) {
 		  $mdDialog.show({
 		    controller: 'EditFormAutosController',
@@ -41,10 +34,22 @@
 		    targetEvent: e,
 		    clickOutsideToClose: true,
 		    locals: {
-		      auto: auto
+		      auto: auto,
+          marcas: marcas,
+          tipos: tipos,
+          subtipos: subtipos,
+          versiones: versiones,
+          combustibles: combustibles,
+          motores: motores
 		    }
-		  }).then(function(data) {
-        return api.autos.update(data);
+		  }).then(function(answer) {
+        return api.autos.update(answer);
+      }).then(function() {
+        if (auto.file.length < 1) return false;
+        var formData = new FormData();
+        formData.append('id_auto', auto.id_auto);
+        formData.append('archivo', auto.file[0].lfFile);
+        return api.autos.updateImage(formData);
       }).then(function() {
         utils.successToast('Auto actualizado exitosamente!');
 				$timeout($state.reload(), 4000);
@@ -54,7 +59,7 @@
       });
 		}
 
-    function showCreateForm(e) {
+    function showCreateForm(e, auto = {}) {
 		  $mdDialog.show({
 		    controller: 'CreateFormAutosController',
 		    controllerAs: 'vm',
@@ -62,8 +67,23 @@
 		    parent: angular.element($document.body),
 		    targetEvent: e,
 		    clickOutsideToClose: true,
+        locals: {
+          auto: auto,
+          marcas: marcas,
+          tipos: tipos,
+          subtipos: subtipos,
+          versiones: versiones,
+          combustibles: combustibles,
+          motores: motores
+		    }
       }).then(function(auto) {
         return api.autos.create(auto);
+      }).then(function() {
+        if (auto.file.length < 1) return false;
+        var formData = new FormData();
+        formData.append('id_auto', auto.id_auto);
+        formData.append('archivo', auto.file[0].lfFile);
+        return api.autos.updateImage(formData);
       }).then(function(res) {
         utils.successToast('Auto creado exitosamente!');
 				$timeout($state.reload(), 4000);

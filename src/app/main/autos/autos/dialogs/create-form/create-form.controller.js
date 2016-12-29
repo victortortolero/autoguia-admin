@@ -6,16 +6,25 @@
     .controller('CreateFormAutosController', CreateFormAutosController);
 
   /** @ngInject */
-  function CreateFormAutosController($scope, $mdDialog) {
+  function CreateFormAutosController(
+    $scope, $mdDialog, auto, marcas, tipos, subtipos, versiones, combustibles, motores
+  ) {
+
     var vm = this;
 
     vm.close = close;
     vm.save = save;
-    vm.auto = {};
+    vm.auto = auto;
 
+    vm.marcas = marcas;
+    vm.tipos = tipos;
+    vm.subtipos = subtipos;
+    vm.modelos = [];
+    vm.versiones = versiones;
+    vm.combustibles = combustibles;
+    vm.motores = motores;
 
     function save() {
-      vm.auto.imagen = $scope.file[0];
       $mdDialog.hide(vm.auto);
     }
 

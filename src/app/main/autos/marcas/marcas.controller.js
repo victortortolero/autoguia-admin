@@ -7,11 +7,11 @@
 
   /** @ngInject */
   function MarcasController(
-    $state, api, $document, $mdDialog, $mdToast, moment, $timeout, $scope, utils
+    $state, marcas, api, $document, $mdDialog, $mdToast, moment, $timeout, $scope, utils
   ) {
     var vm = this;
 
-    vm.marcas = [];
+    vm.marcas = marcas;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -24,18 +24,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.marcas.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.marcas = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(marca, e) {
 		  $mdDialog.show({

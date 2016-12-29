@@ -12,6 +12,14 @@
     // State
     $stateProvider.state('app.marcas', {
       url: '/marcas',
+      resolve: {
+        marcas: function(api) {
+          return api.marcas.get()
+            .then(function(res) {
+              return res.data
+            });
+        },
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/autos/marcas/marcas.html',
