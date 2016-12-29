@@ -8,11 +8,11 @@
   /** @ngInject */
   function DealersController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    moment, utils, $timeout, $scope, dealers
   ) {
     var vm = this;
 
-    vm.dealers = [];
+    vm.dealers = dealers;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -23,18 +23,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.dealers.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.dealers = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(dealer, e) {
 		  $mdDialog.show({

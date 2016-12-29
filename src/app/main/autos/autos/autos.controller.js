@@ -77,9 +77,9 @@
           combustibles: combustibles,
           motores: motores
 		    }
-      }).then(function(auto) {
-        return api.autos.create(auto);
-      }).then(function() {
+      }).then(function(answer) {
+        return api.autos.create(answer);
+      }).then(function(res) {
         if (auto.file.length < 1) return false;
         var formData = new FormData();
         formData.append('id_auto', auto.id_auto);

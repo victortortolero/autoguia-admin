@@ -11,29 +11,32 @@
 
 		<md-dialog-content ms-scroll>
 
-      <md-input-container class="md-block">
+			<md-input-container class="md-block">
         <label>Nombre</label>
-        <input required md-no-asterisk name="nombre" ng-model="vm.tipo.nombre">
+        <input required name="nombre" ng-model="vm.tipo.nombre">
         <div ng-messages="form.nombre.$error">
-          <div ng-message="required">This is required.</div>
+          <div ng-message="required">Campo Requerido.</div>
         </div>
       </md-input-container>
 
 			<md-input-container class="md-block">
-        <label>Descripción</label>
-        <input required md-no-asterisk name="descripcion" ng-model="vm.tipo.descripcion">
-        <div ng-messages="form.descripcion.$error">
-          <div ng-message="required">This is required.</div>
-        </div>
+        <label>Descripcion</label>
+        <input md-no-asterisk name="descripcion" ng-model="vm.tipo.descripcion">
+        <!-- <div ng-messages="form.descripcion.$error">
+          <div ng-message="required">Campo Requerido.</div>
+        </div> -->
       </md-input-container>
 
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row" layout-align="space-between center">
+			<md-button ng-click="vm.close()" class="md-warn md-raised" aria-label="CANCEL">
+				Cancelar
+			</md-button>
+
 			<md-button ng-click="vm.update()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="form.$invalid">
 				Guardar
 			</md-button>
-
 		</md-dialog-actions>
 	</form>
 </md-dialog>

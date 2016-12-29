@@ -11,9 +11,9 @@
 
 		<md-dialog-content ms-scroll>
 
-      <md-input-container class="md-block">
+			<md-input-container class="md-block">
         <label>Nombres</label>
-        <input required md-no-asterisk name="nombres" ng-model="vm.dealer.nombres">
+        <input required name="nombres" ng-model="vm.dealer.nombres">
         <div ng-messages="form.nombres.$error">
           <div ng-message="required">Campo requerido.</div>
         </div>
@@ -21,7 +21,7 @@
 
       <md-input-container class="md-block">
         <label>Apellidos</label>
-        <input required md-no-asterisk name="apellidos" ng-model="vm.dealer.apellidos">
+        <input required name="apellidos" ng-model="vm.dealer.apellidos">
         <div ng-messages="form.apellidos.$error">
           <div ng-message="required">Campo requerido.</div>
         </div>
@@ -29,7 +29,7 @@
 
 			<md-input-container class="md-block">
         <label>Latitud</label>
-        <input required md-no-asterisk name="latitude" ng-model="vm.dealer.latitude">
+        <input required name="latitude" ng-model="vm.dealer.latitude">
         <div ng-messages="form.latitude.$error">
           <div ng-message="required">Campo requerido.</div>
         </div>
@@ -37,7 +37,7 @@
 
 			<md-input-container class="md-block">
         <label>Longitud</label>
-        <input required md-no-asterisk name="longitude" ng-model="vm.dealer.longitude">
+        <input required name="longitude" ng-model="vm.dealer.longitude">
         <div ng-messages="form.longitude.$error">
           <div ng-message="required">Campo requerido.</div>
         </div>
@@ -46,11 +46,14 @@
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row" layout-align="space-between center">
+			<md-button ng-click="vm.close()" class="md-warn md-raised" aria-label="CANCEL">
+				Cancelar
+			</md-button>
+
 			<md-button ng-click="vm.save()" class="save-button md-accent md-raised" aria-label="SAVE"
       ng-disabled="form.$invalid">
 				Guardar
 			</md-button>
-
 		</md-dialog-actions>
 	</form>
 </md-dialog>

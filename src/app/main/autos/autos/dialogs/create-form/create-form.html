@@ -236,11 +236,14 @@
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row" layout-align="space-between center">
+			<md-button ng-click="vm.close()" class="md-warn md-raised" aria-label="CANCEL">
+				Cancelar
+			</md-button>
+
 			<md-button ng-click="vm.save()" class="save-button md-accent md-raised" aria-label="SAVE"
       ng-disabled="form.$invalid">
 				Guardar
 			</md-button>
-
 		</md-dialog-actions>
 	</form>
 </md-dialog>

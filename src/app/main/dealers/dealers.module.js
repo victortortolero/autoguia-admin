@@ -12,6 +12,13 @@
     // State
     $stateProvider.state('app.dealers', {
       url: '/dealers',
+      resolve: {
+        dealers: function(api) {
+          return api.dealers.get().then(function(res) {
+            return res.data;
+          });
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/dealers/dealers.html',

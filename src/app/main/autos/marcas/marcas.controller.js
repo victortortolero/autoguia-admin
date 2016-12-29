@@ -40,7 +40,6 @@
         return api.marcas.update(answer);
       }).then(function(response) {
         if (marca.file.length < 1) return false;
-        console.log(marca);
         var formData = new FormData();
         formData.append('id_marca', marca.id_marca);
         formData.append('archivo', marca.file[0].lfFile);
@@ -66,7 +65,8 @@
       });
 		}
 
-    function showCreateForm(e) {
+    function showCreateForm(e, marca) {
+      marca = marca || {};
 		  $mdDialog.show({
 		    controller: 'CreateFormMarcasController',
 		    controllerAs: 'vm',
@@ -74,8 +74,18 @@
 		    parent: angular.element($document.body),
 		    targetEvent: e,
 		    clickOutsideToClose: true,
+        locals: {
+          marca: marca
+        }
 		  }).then(function(answer) {
 				return api.marcas.create(answer);
+      }).then(function(response) {
+        // if (marca.file.length < 1) return false;
+        // var formData = new FormData();
+        // formData.append('id_marca', marca.id_marca);
+        // formData.append('archivo', marca.file[0].lfFile);
+        // return api.marcas.updateImage(formData);
+        return response;
 		  }).then(function(res) {
         $mdToast.show(
           $mdToast.simple()

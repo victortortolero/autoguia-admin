@@ -6,12 +6,12 @@
     .controller('CreateFormMarcasController', CreateFormMarcasController);
 
   /** @ngInject */
-  function CreateFormMarcasController($scope, $mdDialog) {
+  function CreateFormMarcasController($scope, $mdDialog, marca) {
     var vm = this;
 
     vm.close = close;
     vm.save = save;
-    vm.marca = {};
+    vm.marca = marca;
 
     function save() {
       $mdDialog.hide(vm.marca);
