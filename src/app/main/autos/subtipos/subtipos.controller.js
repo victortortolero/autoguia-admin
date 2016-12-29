@@ -8,11 +8,11 @@
   /** @ngInject */
   function SubTiposController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    moment, utils, $timeout, $scope, subtipos
   ) {
     var vm = this;
 
-    vm.subtipos = [];
+    vm.subtipos = subtipos;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -23,18 +23,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.subtipos.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.subtipos = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(subtipo, e) {
 		  $mdDialog.show({

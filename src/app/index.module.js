@@ -24,6 +24,7 @@
     'app.pages.auth.login',
     'app.autos',
     'app.dealers',
-    
+    'app.reportes'
+
   ]);
 })();

@@ -10,7 +10,230 @@
 		</md-toolbar>
 
 		<md-dialog-content ms-scroll>
-			
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+	        <label>Año Lanzamiento</label>
+	        <input required md-no-asterisk name="anio_lanzamiento" ng-model="vm.auto.anio_lanzamiento_auto">
+	        <div ng-messages="form.anio_lanzamiento.$error">
+	          <div ng-message="required">This is required.</div>
+	        </div>
+	      </md-input-container>
+
+				<md-input-container flex class="md-block">
+	        <label>Score Auto</label>
+	        <input md-no-asterisk name="score_auto" ng-model="vm.auto.score_auto">
+	        <div ng-messages="form.score_auto.$error">
+	          <div ng-message="required">This is required.</div>
+	        </div>
+	      </md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+          <label>Marca</label>
+          <md-select required name="marca" ng-model="vm.auto.id_marca">
+            <md-option ng-repeat="marca in vm.marcas" value="{{marca.id_marca}}">
+              {{marca.nombre}}
+            </md-option>
+          </md-select>
+					<div ng-messages="form.marca.$error">
+	          <div ng-message="required">Campo requerido.</div>
+	        </div>
+        </md-input-container>
+
+				<md-input-container flex class="md-block">
+          <label>Tipo</label>
+          <md-select ng-model="vm.auto.id_tipo">
+            <md-option ng-repeat="tipo in vm.tipos" value="{{tipo.id_tipo}}">
+              {{tipo.nombre}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+				<md-input-container flex class="md-block">
+          <label>Subtipo</label>
+          <md-select ng-model="vm.auto.id_subtipo">
+            <md-option ng-repeat="subtipo in vm.subtipos" value="{{subtipo.id_subtipo}}">
+              {{subtipo.nombre}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+          <label>Modelo</label>
+          <md-select ng-model="vm.auto.id_modelo">
+            <md-option ng-repeat="modelo in vm.modelos" value="{{modelo.id_modelo}}">
+              {{modelo.nombre}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+				<md-input-container flex class="md-block">
+          <label>Version</label>
+          <md-select ng-model="vm.auto.id_version">
+            <md-option ng-repeat="version in vm.versiones" value="{{version.id_version}}">
+              {{version.nombre}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+          <label>Combustible</label>
+          <md-select ng-model="vm.auto.id_combustible">
+            <md-option ng-repeat="combustible in vm.combustibles" value="{{combustible.id_combustible}}">
+              {{combustible.nombre}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+
+				<md-input-container flex class="md-block">
+          <label>Motores</label>
+          <md-select ng-model="vm.auto.id_motor">
+            <md-option ng-repeat="motor in vm.motores" value="{{motor.id_motor}}">
+              {{motor.descripcion}}
+            </md-option>
+          </md-select>
+        </md-input-container>
+			</div>
+
+
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+					<label>Numero de Puertas</label>
+					<input required md-no-asterisk name="num_puertas" ng-model="vm.auto.num_puertas">
+					<div ng-messages="form.num_puertas.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container flex class="md-block">
+					<label>Potencia</label>
+					<input required md-no-asterisk name="potencia" ng-model="vm.auto.potencia">
+					<div ng-messages="form.potencia.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+					<label>Contaminacion Co2</label>
+					<input required md-no-asterisk name="contaminacion_co2" ng-model="vm.auto.contaminacion_co2">
+					<div ng-messages="form.contaminacion_co2.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container flex class="md-block">
+					<label>Numero de Velocidades</label>
+					<input required md-no-asterisk name="num_velocidades" ng-model="vm.auto.num_velocidades">
+					<div ng-messages="form.num_velocidades.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+					<label>Rango Potencia Inicial</label>
+					<input required md-no-asterisk name="rango_potencia_inicial" ng-model="vm.auto.rango_potencia_inicial">
+					<div ng-messages="form.rango_potencia_inicial.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container flex class="md-block">
+					<label>Rango Potencia Final</label>
+					<input required md-no-asterisk name="rango_potencia_final" ng-model="vm.auto.rango_potencia_final">
+					<div ng-messages="form.rango_potencia_final.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-padding>
+				<md-input-container flex class="md-block">
+					<label>Maletero</label>
+					<input required md-no-asterisk name="maletero" ng-model="vm.auto.maletero">
+					<div ng-messages="form.maletero.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+
+				<md-input-container flex class="md-block">
+					<label>Cuota Mensual Maxima</label>
+					<input required md-no-asterisk name="cuota_mensual_maxima" ng-model="vm.auto.cuota_mensual_maxima">
+					<div ng-messages="form.cuota_mensual_maxima.$error">
+						<div ng-message="required">This is required.</div>
+					</div>
+				</md-input-container>
+			</div>
+
+			<div layout="row" layout-xs="column" layout-align="center" layout-padding>
+				<div flex layout="column" layout-padding>
+					<div layout="row" layout-xs="column" layout-padding>
+						<md-input-container flex class="md-block">
+			        <label>Valor Maximo</label>
+			        <input required md-no-asterisk name="valor_maximo" ng-model="vm.auto.valor_maximo">
+			        <div ng-messages="form.valor_maximo.$error">
+			          <div ng-message="required">This is required.</div>
+			        </div>
+			      </md-input-container>
+					</div>
+
+					<div layout="row" layout-xs="column" layout-padding>
+						<md-input-container flex class="md-block">
+							<label>Numero de Cilindros</label>
+							<input required md-no-asterisk name="num_cilindros" ng-model="vm.auto.num_cilindros">
+							<div ng-messages="form.num_cilindros.$error">
+								<div ng-message="required">This is required.</div>
+							</div>
+						</md-input-container>
+					</div>
+
+					<div layout="row" layout-xs="column" layout-padding>
+						<md-input-container flex class="md-block">
+							<label>Tipo de Cambio</label>
+							<md-select required name="tipo_cambio" ng-model="vm.auto.tipo_cambio">
+		            <md-option value="Automático">Automático</md-option>
+								<md-option value="Manual">Manual</md-option>
+		          </md-select>
+							<div ng-messages="form.tipo_cambio.$error">
+								<div ng-message="required">Campo Requerido.</div>
+							</div>
+						</md-input-container>
+					</div>
+				</div>
+
+				<div flex>
+					<h3>Imagen Actual</h3>
+					<img src="{{vm.auto.img_auto || 'http://placehold.it/800/800'}}" class="img-responsive" alt="">
+				</div>
+			</div>
+
+      <div layout="row" layout-padding>
+        <div layout="row" layout-align="start end">
+          <lf-ng-md-file-input name="file" lf-files="vm.auto.file" preview draw progress
+             lf-required lf-filesize="10MB" lf-browse-label="Elegir Foto"
+             lf-remove-label="Eliminar" lf-drag-and-drop-label="Arrastrar">
+          </lf-ng-md-file-input>
+          <div ng-messages="form.file.$error" style="color:red;">
+            <!-- <div ng-message="required">This is required.</div> -->
+            <div ng-message="filesize">File size too large.</div>
+            <!-- <div ng-message="mimetype">Mimetype error.</div> -->
+          </div>
+        </div>
+      </div>
+
+			<h3>{{vm.auto}}</h3>
+
+
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row" layout-align="space-between center">

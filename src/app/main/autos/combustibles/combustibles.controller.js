@@ -8,11 +8,11 @@
   /** @ngInject */
   function CombustiblesController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    moment, utils, $timeout, $scope, combustibles
   ) {
     var vm = this;
 
-    vm.combustibles = [];
+    vm.combustibles = combustibles;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -23,18 +23,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.combustibles.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.combustibles = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(combustible, e) {
       combustible.octanaje = Number(combustible.octanaje);

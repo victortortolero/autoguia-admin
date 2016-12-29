@@ -8,11 +8,11 @@
   /** @ngInject */
   function TiposController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    moment, utils, $timeout, $scope, tipos
   ) {
     var vm = this;
 
-    vm.tipos = [];
+    vm.tipos = tipos;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -23,18 +23,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.tipos.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.tipos = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(tipo, e) {
 		  $mdDialog.show({

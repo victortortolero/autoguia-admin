@@ -12,6 +12,13 @@
     // State
     $stateProvider.state('app.combustibles', {
       url: '/combustibles',
+      resolve: {
+        combustibles: function(api) {
+          return api.combustibles.get().then(function(res) {
+            return res.data
+          });
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/autos/combustibles/combustibles.html',

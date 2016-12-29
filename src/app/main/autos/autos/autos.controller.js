@@ -59,7 +59,8 @@
       });
 		}
 
-    function showCreateForm(e, auto = {}) {
+    function showCreateForm(e, auto) {
+      auto = auto || {};
 		  $mdDialog.show({
 		    controller: 'CreateFormAutosController',
 		    controllerAs: 'vm',

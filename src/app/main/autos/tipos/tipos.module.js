@@ -12,6 +12,13 @@
     // State
     $stateProvider.state('app.tipos', {
       url: '/tipos',
+      resolve: {
+        tipos: function(api) {
+          return api.tipos.get().then(function(res) {
+            return res.data
+          });
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/autos/tipos/tipos.html',

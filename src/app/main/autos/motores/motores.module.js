@@ -12,6 +12,13 @@
     // State
     $stateProvider.state('app.motores', {
       url: '/motores',
+      resolve: {
+        motores: function(api) {
+          return api.motores.get().then(function(res) {
+            return res.data
+          });
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/autos/motores/motores.html',

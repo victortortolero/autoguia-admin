@@ -12,6 +12,13 @@
     // State
     $stateProvider.state('app.versiones', {
       url: '/versiones',
+      resolve: {
+        versiones: function(api) {
+          return api.versiones.get().then(function(res) {
+            return res.data
+          });
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/autos/versiones/versiones.html',

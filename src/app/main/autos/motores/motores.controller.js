@@ -8,11 +8,11 @@
   /** @ngInject */
   function MotoresController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    moment, utils, $timeout, $scope, motores
   ) {
     var vm = this;
 
-    vm.motores = [];
+    vm.motores = motores;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -23,18 +23,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.motores.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.motores = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(motor, e) {
 		  $mdDialog.show({

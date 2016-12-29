@@ -12,6 +12,13 @@
     // State
     $stateProvider.state('app.subtipos', {
       url: '/subtipos',
+      resolve: {
+        subtipos: function(api) {
+          return api.subtipos.get().then(function(res) {
+            return res.data
+          });
+        }
+      },
       views: {
         'content@app': {
           templateUrl: 'app/main/autos/subtipos/subtipos.html',

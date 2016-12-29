@@ -8,11 +8,11 @@
   /** @ngInject */
   function VersionesController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope
+    moment, utils, $timeout, $scope, versiones
   ) {
     var vm = this;
 
-    vm.versiones = [];
+    vm.versiones = versiones;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
@@ -23,18 +23,6 @@
 			autoWidth : false,
 			responsive: true
 		};
-
-    activate();
-
-    function activate() {
-      api.versiones.get()
-        .then(function(res) {
-          var data = res.data;
-          vm.versiones = data;
-        }, function(error) {
-          console.log(error);
-        });
-    }
 
     function showEditForm(version, e) {
 		  $mdDialog.show({
