@@ -9,6 +9,8 @@
   function EditFormMarcasController(marca, api, $mdDialog) {
     var vm = this;
 
+    vm.updating = false;
+
     vm.close = close;
     vm.marca = marca;
     vm.update = update;

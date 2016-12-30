@@ -8,7 +8,7 @@
   /** @ngInject */
   function MotoresController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope, motores
+    moment, utils, $timeout, $scope, motores, DtOptions
   ) {
     var vm = this;
 
@@ -17,12 +17,7 @@
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
 
-    vm.dtOptions = {
-			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-			pagingType: 'simple',
-			autoWidth : false,
-			responsive: true
-		};
+    vm.dtOptions = DtOptions;
 
     function showEditForm(motor, e) {
 		  $mdDialog.show({

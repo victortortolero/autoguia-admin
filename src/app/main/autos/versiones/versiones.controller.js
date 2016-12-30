@@ -8,7 +8,7 @@
   /** @ngInject */
   function VersionesController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope, versiones
+    moment, utils, $timeout, $scope, versiones, DtOptions
   ) {
     var vm = this;
 
@@ -17,12 +17,7 @@
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
 
-    vm.dtOptions = {
-			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-			pagingType: 'simple',
-			autoWidth : false,
-			responsive: true
-		};
+    vm.dtOptions = DtOptions;
 
     function showEditForm(version, e) {
 		  $mdDialog.show({

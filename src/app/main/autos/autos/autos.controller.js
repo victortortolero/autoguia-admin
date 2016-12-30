@@ -9,7 +9,8 @@
   function AutosController(
     autos, $state, api, $document, $mdDialog, $mdToast,
     moment, utils, $timeout, $scope,
-    marcas, tipos, subtipos, versiones, combustibles, motores
+    marcas, tipos, subtipos, versiones, combustibles, motores,
+    DtOptions
   ) {
 
     var vm = this;
@@ -18,12 +19,7 @@
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
 
-    vm.dtOptions = {
-			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-			pagingType: 'simple',
-			autoWidth : false,
-			responsive: true
-		};
+    vm.dtOptions = DtOptions;
 
     function showEditForm(auto, e) {
 		  $mdDialog.show({

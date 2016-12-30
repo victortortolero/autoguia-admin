@@ -90,7 +90,10 @@
 				Cancelar
 			</md-button>
 
-			<md-button ng-click="vm.update()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="form.$invalid">
+			<md-progress-circular md-mode="indeterminate"></md-progress-circular>
+
+			<md-button ng-click="vm.update()" class="save-button md-accent md-raised" aria-label="SAVE"
+			ng-disabled="form.$invalid || vm.updating">
 				Actualizar
 			</md-button>
 		</md-dialog-actions>

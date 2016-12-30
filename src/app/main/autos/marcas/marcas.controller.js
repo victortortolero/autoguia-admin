@@ -7,7 +7,7 @@
 
   /** @ngInject */
   function MarcasController(
-    $state, marcas, api, $document, $mdDialog, $mdToast, moment, $timeout, $scope, utils
+    $state, marcas, api, $document, $mdDialog, $mdToast, moment, $timeout, $scope, utils, DtOptions
   ) {
     var vm = this;
 
@@ -18,12 +18,7 @@
 
     vm.removeObjectFromArray = utils.removeObjectFromArray;
 
-    vm.dtOptions = {
-			dom       : '<"top"f>rt<"bottom"<"left"<"length"l>><"right"<"info"i><"pagination"p>>>',
-			pagingType: 'simple',
-			autoWidth : false,
-			responsive: true
-		};
+    vm.dtOptions = DtOptions;
 
     function showEditForm(marca, e) {
 		  $mdDialog.show({
