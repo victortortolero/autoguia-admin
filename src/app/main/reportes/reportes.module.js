@@ -3,27 +3,19 @@
 
   angular
     .module('app.reportes', [
-      'datatables', 'flow', 'angularMoment', 'ngMaterial', 'lfNgMdFileInput'
+      'app.reportes.leadsConDealers',
+      'app.reportes.marcasMasBuscadas',
+      'app.reportes.modelosMasBuscados',
+      'app.reportes.leadsConAutos',
     ])
     .config(config);
 
   /** @ngInject */
   function config($stateProvider, $translatePartialLoaderProvider, msNavigationServiceProvider) {
-    // State
-    $stateProvider.state('app.reportes', {
-      url: '/reportes',
-      views: {
-        'content@app': {
-          templateUrl: 'app/main/reportes/reportes.html',
-          controller: 'ReportesController as vm'
-        }
-      }
-    });
 
     msNavigationServiceProvider.saveItem('reportes', {
         title : 'Reportes',
-        state : 'app.reportes',
-        weight: 1
+        weight: 3
     });
   }
 

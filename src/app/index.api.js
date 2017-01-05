@@ -169,6 +169,15 @@
       }
     };
 
+    api.reportes = {
+      asignacionesLeadParaDealers: function() {
+        return $http.get(api.baseUrl + '/reportes/asignaciones_lead_para_dealers');
+      },
+      autosElegidosPorLeads: function() {
+        return $http.get(api.baseUrl + '/reportes/autos_elegidos_por_leads');
+      }
+    };
+
     return api;
   }
 

@@ -30,7 +30,7 @@
     msNavigationServiceProvider.saveItem('dealers', {
         title : 'Dealers',
         state : 'app.dealers',
-        weight: 1
+        weight: 10
     });
   }
 
