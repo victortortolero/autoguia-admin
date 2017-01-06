@@ -48,13 +48,13 @@
         return $http.get(api.baseUrl + '/autos');
       },
       create: function(auto) {
-        return $http.post(api.baseUrl + '/auto', auto);
+        return $http.post(api.baseUrl + '/autos', auto);
       },
       update: function(auto) {
-        return $http.put(api.baseUrl + '/auto/' + auto.id_auto, auto);
+        return $http.put(api.baseUrl + '/autos/' + auto.id_auto, auto);
       },
       destroy: function(auto) {
-        return $http.delete(api.baseUrl + '/auto/' + auto.id_auto);
+        return $http.delete(api.baseUrl + '/autos/' + auto.id_auto);
       },
       updateImage: function(formData) {
         return $http.post(api.baseUrl + '/autos/image/auto', formData, api.headerConfig.file);

@@ -31,15 +31,7 @@
 		    locals: {
 		      marca: marca
 		    }
-		  }).then(function(answer) {
-        return api.marcas.update(answer);
-      }).then(function(response) {
-        if (marca.file.length < 1) return false;
-        var formData = new FormData();
-        formData.append('id_marca', marca.id_marca);
-        formData.append('archivo', marca.file[0].lfFile);
-        return api.marcas.updateImage(formData);
-      }).then(function() {
+		  }).then(function() {
 				$mdToast.show(
 					$mdToast.simple()
 						.textContent("Marca actualizada exitosamente!")
@@ -48,7 +40,7 @@
 				);
 				$timeout(function() {
 					$state.reload();
-				}, 4000);
+				}, 2000);
 			}).catch(function(err) {
         if (err === "closed-manually" || typeof(err) === 'undefined') return;
         $mdToast.show(
@@ -72,15 +64,6 @@
         locals: {
           marca: marca
         }
-		  }).then(function(answer) {
-				return api.marcas.create(answer);
-      }).then(function(response) {
-        // if (marca.file.length < 1) return false;
-        // var formData = new FormData();
-        // formData.append('id_marca', marca.id_marca);
-        // formData.append('archivo', marca.file[0].lfFile);
-        // return api.marcas.updateImage(formData);
-        return response;
 		  }).then(function(res) {
         $mdToast.show(
           $mdToast.simple()
@@ -88,7 +71,7 @@
             .toastClass("toast-successfully")
             .hideDelay(3000)
         );
-        $timeout($state.reload, 4000);
+        $timeout($state.reload, 2000);
       }).catch(function (err) {
         if (err === "closed-manually" || typeof(err) === 'undefined') return;
         console.log(err);

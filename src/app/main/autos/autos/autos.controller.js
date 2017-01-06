@@ -18,6 +18,7 @@
     vm.autos = autos;
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
+    vm.destroy = destroy;
 
     vm.dtOptions = DtOptions;
 
@@ -73,14 +74,6 @@
           combustibles: combustibles,
           motores: motores
 		    }
-      }).then(function(answer) {
-        return api.autos.create(answer);
-      }).then(function(res) {
-        if (auto.file.length < 1) return false;
-        var formData = new FormData();
-        formData.append('id_auto', auto.id_auto);
-        formData.append('archivo', auto.file[0].lfFile);
-        return api.autos.updateImage(formData);
       }).then(function(res) {
         utils.successToast('Auto creado exitosamente!');
 				$timeout($state.reload(), 4000);

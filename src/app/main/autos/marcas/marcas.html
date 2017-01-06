@@ -60,11 +60,11 @@
                 <span class="column-title">Empresa</span>
               </div>
             </th>
-            <!-- <th class="secondary-text">
+            <th class="secondary-text">
               <div class="table-header">
                 <span class="column-title">Logo</span>
               </div>
-            </th> -->
+            </th>
             <th class="secondary-text">
               <div class="table-header">
                 <span class="column-title">Acciones</span>
@@ -77,9 +77,9 @@
             <td>{{marca.id_marca}}</td>
             <td>{{marca.nombre}}</td>
             <td>{{marca.empresa}}</td>
-            <!-- <td>
-              <img src="{{marca.img_url_marca || 'http://placehold.it/600/600'}}" class="img-responsive" alt="">
-            </td> -->
+            <td>
+              <img src="{{marca.img_url_marca || 'http://placehold.it/600/600'}}" class="brand-img img-responsive" alt="">
+            </td>
             <td layout="row">
               <md-button class="md-raised" ng-click="vm.showEditForm(marca, $event)">Modificar</md-button>
               <md-button class="md-raised" ng-click="vm.destroy(marca)">Eliminar</md-button>

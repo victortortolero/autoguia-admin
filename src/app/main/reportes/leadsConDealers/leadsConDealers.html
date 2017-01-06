@@ -52,7 +52,12 @@
             </th>
             <th class="secondary-text">
               <div class="table-header">
-                <span class="column-title">Nombre</span>
+                <span class="column-title">Usuario</span>
+              </div>
+            </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Email</span>
               </div>
             </th>
             <th class="secondary-text">
@@ -60,13 +65,20 @@
                 <span class="column-title">Dealer</span>
               </div>
             </th>
+            <th class="secondary-text">
+              <div class="table-header">
+                <span class="column-title">Email Dealer</span>
+              </div>
+            </th>
           </tr>
         </thead>
         <tbody>
           <tr ng-repeat="item in vm.asignacionesLeadParaDealers">
             <td>{{item.id_lead_dealer}}</td>
-            <td>{{item.nombres}} {{item.apellidos}}</td>
-            <td>ASASd</td>
+            <td>{{item.lead_nombres}} {{item.lead_apellidos}}</td>
+            <td>{{item.lead_email}}</td>
+            <td>{{item.dealer_nombres}} {{item.dealer_apellidos}}</td>
+            <td>{{item.dealer_email}}</td>
           </tr>
         </tbody>
       </table>

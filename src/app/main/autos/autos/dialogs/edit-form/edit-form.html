@@ -231,17 +231,18 @@
         </div>
       </div>
 
-			<h3>{{vm.auto}}</h3>
-
-
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row" layout-align="space-between center">
-			<md-button ng-click="vm.close()" class="md-warn md-raised" aria-label="CANCEL">
+			<md-button ng-click="vm.close()" class="md-warn md-raised" aria-label="CANCEL"
+				ng-disabled="vm.updating">
 				Cancelar
 			</md-button>
 
-			<md-button ng-click="vm.update()" class="save-button md-accent md-raised" aria-label="SAVE" ng-disabled="eventForm.$invalid">
+			<md-progress-circular ng-show="vm.updating" md-mode="indeterminate"></md-progress-circular>
+
+			<md-button ng-click="vm.update()" class="save-button md-accent md-raised" aria-label="SAVE"
+				ng-disabled="eventForm.$invalid || vm.updating">
 				Actualizar
 			</md-button>
 		</md-dialog-actions>
