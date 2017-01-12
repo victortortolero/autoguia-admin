@@ -9,7 +9,9 @@
   function GeolocationService($http) {
     var service = {};
 
-    service.geolocate = function() {
+    service.geolocate = geolocate;
+
+    function geolocate() {
       var f = navigator.geolocation ? navigatorLocate : googleLocate;
       return f();
     }

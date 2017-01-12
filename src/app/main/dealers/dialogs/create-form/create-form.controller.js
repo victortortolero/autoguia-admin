@@ -6,7 +6,7 @@
     .controller('CreateFormDealersController', CreateFormDealersController);
 
   /** @ngInject */
-  function CreateFormDealersController($scope, $mdDialog, position, NgMap) {
+  function CreateFormDealersController($scope, $mdDialog, position, NgMap, $timeout) {
     var vm = this;
 
     // Attributes
@@ -17,17 +17,27 @@
       lat: vm.currentPos.latitude,
       lng: vm.currentPos.longitude
     };
-    console.log(vm.currentPos);
+    vm.type = "['geocode']";
+    vm.googleMapsUrl = 'https://maps.googleapis.com/maps/api/js?libraries=places';
 
     // Methods
     vm.close = close;
     vm.save = save;
     vm.handleMarkerDrag = handleMarkerDrag;
     vm.centerOnMarker = centerOnMarker;
+    vm.placeChanged = placeChanged;
 
-    activate();
+    /* HotFix for not rendering again bullshit */
+    vm.render = false;
+    $timeout(function () {
+      vm.render = true;
+      activate();
+    }, 1000);
 
     function save() {
+      vm.dealer.latitude = vm.marker.lat;
+      vm.dealer.longitude = vm.marker.lng;
+      vm.direccion = vm.address;
       $mdDialog.hide(vm.dealer);
     }
 
@@ -43,6 +53,12 @@
           lng: vm.currentPos.longitude
         });
       });
+    }
+
+    function placeChanged() {
+      vm.place = this.getPlace();
+      vm.map.panTo(vm.place.geometry.location);
+      updateMarker(vm.place.geometry.location);
     }
 
     function handleMarkerDrag(event) {
