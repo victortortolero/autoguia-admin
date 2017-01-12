@@ -8,7 +8,8 @@
   /** @ngInject */
   function DealersController(
     $state, api, $document, $mdDialog, $mdToast,
-    moment, utils, $timeout, $scope, dealers, DtOptions
+    moment, utils, $timeout, $scope, dealers, DtOptions,
+    GeolocationService, position
   ) {
     var vm = this;
 
@@ -16,6 +17,8 @@
     vm.showEditForm = showEditForm;
     vm.showCreateForm = showCreateForm;
     vm.destroy = destroy;
+
+    var currentPos = position;
 
     vm.dtOptions = DtOptions;
 
@@ -28,7 +31,8 @@
 		    targetEvent: e,
 		    clickOutsideToClose: true,
 		    locals: {
-		      dealer: dealer
+		      dealer: dealer,
+          position: currentPos
 		    }
 		  }).then(function(data) {
         return api.dealers.update(data);
@@ -49,6 +53,9 @@
 		    parent: angular.element($document.body),
 		    targetEvent: e,
 		    clickOutsideToClose: true,
+        locals: {
+          position: currentPos
+        }
 		  }).then(function(dealer) {
         return api.dealers.create(dealer);
       }).then(function(res) {

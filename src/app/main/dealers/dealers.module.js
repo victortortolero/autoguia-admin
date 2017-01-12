@@ -3,7 +3,8 @@
 
   angular
     .module('app.dealers', [
-      'datatables', 'flow', 'angularMoment', 'ngMaterial', 'lfNgMdFileInput'
+      'datatables', 'flow', 'angularMoment', 'ngMaterial', 'lfNgMdFileInput',
+      'ngMap'
     ])
     .config(config);
 
@@ -17,6 +18,11 @@
           return api.dealers.get().then(function(res) {
             return res.data;
           });
+        },
+        position: function(GeolocationService) {
+          return GeolocationService.geolocate().then(function(pos) {
+            return pos;
+          })
         }
       },
       views: {
